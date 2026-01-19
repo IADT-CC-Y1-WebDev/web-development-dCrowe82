@@ -26,7 +26,11 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $firstName = "Daniel";
+            $lastName = "Crowe";
+            $age = 19;
+            $city = "Bray";
+            echo "My name is $firstName $lastName, I am $age years old and I live in $city";
         ?>
     </div>
 
@@ -43,7 +47,23 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $applePrice = 0.99;
+            $appleQuan = 2;
+            $appleTotal = $applePrice * $appleQuan;
+            
+            $milkPrice = 2.50;
+            $milkQuan = 4;
+            $milkTotal = $milkPrice * $milkQuan;
+
+            $breadPrice = 1.50;
+            $breadQuan = 1;
+            $breadTotal = $breadPrice * $breadQuan;
+            
+            $total = $appleTotal + $milkTotal + $breadTotal;
+            
+            $discount = 0.1;
+            $total = $total - $total * $discount;
+            echo $total;
         ?>
     </div>
 
