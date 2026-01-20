@@ -26,7 +26,12 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $movies = ["Arrival", "Memento", "Parasite", "Prisoners", "Blade Runner"];
+
+            for ($i = 0; $i < count($movies); $i++) {
+                echo "Movie " . $i + 1 . ": {$movies[$i]} <br>";
+            }
+
         ?>
     </div>
 
@@ -41,7 +46,15 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $student = [
+                "name" => "Daniel",
+                "studentId" => "n00254023",
+                "course" => "Creative Computing",
+                "grade" => "??"
+            ];
+            
+            echo "The student's name is {$student["name"]}, and their ID is {$student["studentId"]}, and they are in the course {$student["course"]}, and their grade is {$student["grade"]}.";
+
         ?>
     </div>
 
@@ -57,7 +70,18 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $countries = [
+                "ireland" => "dublin",
+                "england" => "london",
+                "france" => "paris",
+                "spain" => "madrid",
+                "greece" => "athens",
+            ];
+
+            foreach ($countries as $country => $capital) {
+                echo "The capital of " . ucfirst($country) . " is " . ucfirst($capital) . "<br>";
+            }
+
         ?>
     </div>
 
@@ -74,7 +98,28 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        
+        $menu = [
+            "starters" => [
+                "starter1" => 1.99,
+                "starter2" => 2.50,
+                "starter3" => 3.99,
+            ],
+            "mainCourse" => [
+                "main1" => 9.99,
+                "main2" => 19.99,
+                "main3" => 29.99,
+            ]
+        ];
+
+        foreach ($menu as $course => $items) {
+            echo "<p>" . ucfirst($course) . ":</p><ul>";
+            foreach ($items as $dish => $price) {
+                echo "<li>" . ucfirst($dish) . ": €$price";
+            }
+            echo "</ul>";
+        }
+
         ?>
     </div>
 

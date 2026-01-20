@@ -26,7 +26,17 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $age = 19;
+
+            if ($age < 13) {
+                echo "Child";
+            } else if ($age < 20) {
+                echo "Teenager";
+            } else if ($age < 65) {
+                echo "Adult";
+            } else {
+                echo "Senior";
+            }
         ?>
     </div>
 
@@ -42,7 +52,17 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $day = 3;
+
+            switch (true) {
+                case ($day > 5):
+                    echo "Weekend";
+                    break;
+                default:
+                    echo "Weekday";
+                    break;
+            }
+
         ?>
     </div>
 
@@ -57,7 +77,12 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $num = 5;
+
+            for ($i = 1; $i <= 10; $i++) {
+                echo "$num x $i = " . $num * $i . "<br>";
+            }
+
         ?>
     </div>
 
@@ -72,7 +97,15 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $timer = 10;
+
+            while ($timer > 0) {
+                echo $timer . "<br>";
+                $timer -= 1;
+            }
+
+            echo "Blast off!";
+
         ?>
     </div>
 

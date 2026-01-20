@@ -26,7 +26,16 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+
+            $targets = ["PHP_SELF", "REQUEST_METHOD", "HTTP_HOST", "HTTP_USER_AGENT"];
+
+            foreach ($_SERVER as $key => $value) {
+
+                if (in_array($key, $targets)) {
+                    echo "$key: $value <br>";
+                }
+            }
+
         ?>
     </div>
 
@@ -42,7 +51,13 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+
+            if (isset($_GET["name"])) {
+                echo "Hello, {$_GET["name"]}!";
+            } else {
+                echo "Hello, Guest!";
+            }
+
         ?>
     </div>
 
@@ -59,7 +74,11 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            if (isset($_GET["product"]) and isset($_GET["quantity"])) {
+                echo "You ordered {$_GET["quantity"]} {$_GET["product"]}(s)";
+            } else {
+                echo "product or quantity not present";
+            }
         ?>
     </div>
 
