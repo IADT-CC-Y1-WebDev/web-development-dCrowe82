@@ -24,7 +24,10 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            function celsiusToFahrenheit($celsius) {
+                return ($celsius * 9/5) + 32;
+            }
+            echo celsiusToFahrenheit(10);
         ?>
     </div>
 
@@ -36,11 +39,17 @@
          and height as parameters. It should return the area. If only one 
          parameter is provided, assume it's a square (both dimensions equal).
     </p>
-
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            function calculateRectangleArea($width, $height="unset") {
+                if ($height == "unset") {
+                    return $width * $width;
+                }
+                return $width * $height;
+            }
+            echo calculateRectangleArea(10, 20);
+            echo calculateRectangleArea(10);
         ?>
     </div>
 
@@ -56,7 +65,16 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            function checkEvenOdd($num) {
+                if ($num % 2 == 0) {
+                    return "Even";
+                }
+                return "Odd";
+            }
+
+            echo checkEvenOdd(10);
+            echo checkEvenOdd(5);
+
         ?>
     </div>
 
@@ -72,7 +90,25 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            function getArrayStats($arr) {
+                sort($arr);
+                $min = $arr[0];
+                $max = $arr[count($arr) - 1];
+                
+                $sum = 0;
+                for ($i = 0; $i < count($arr); $i ++) {
+                    $sum += $arr[$i];
+                }
+                $avg = $sum / count($arr);
+
+                return [$min, $max, $avg];
+
+            }
+
+            [$min, $max, $avg] = getArrayStats([10, 5]);
+
+            echo "min: $min max: $max average: $avg";
+
         ?>
     </div>
 

@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/exercises/css/style.css">
 </head>
 <body>
+
+    <?php
+    require "inc/navigation.php"
+    ?>
+
     <div class="back-link">
         <a href="index.php">&larr; Back to PHP Introduction</a>
         <a href="/examples/01-php-introduction/07-require.php">View Example &rarr;</a>
@@ -32,7 +37,12 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            require_once "lib/utilities.php";
+            echo truncate("heeyehdhjdj", 2);
+            echo "<br>";
+            echo formatPrice(123.1251);
+            echo "<br>";
+            echo getCurrentYear();
         ?>
     </div>
 
@@ -43,9 +53,19 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            require_once "lib/validators.php";
+            echo isValidEmail("oisadoih@posadj.com");
+
+            echo "<br>";
+
+            require_once "lib/formatters.php";
+            echo formatPhoneNumber(12388);
         ?>
     </div>
+
+    <?php
+    require "inc/navigation.php"
+    ?>
 
 </body>
 </html>
