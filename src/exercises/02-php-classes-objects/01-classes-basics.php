@@ -35,6 +35,9 @@
         // Step 2: Require the file
         // require_once __DIR__ . '/classes/Student.php';
         // Step 3: Create a student and display their details
+            require_once __DIR__ . "/classes/Student.php";
+            $student = new Student("Daniel", "098123409");
+            $student->displayDetails();
         ?>
     </div>
 
@@ -53,8 +56,11 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+            $student1 = new Student("sadk", "12047");
+            $student2 = new Student("fahsdg", "13094");
+
+            $student1->displayDetails();
+            $student2->displayDetails();
         ?>
     </div>
 
@@ -75,6 +81,8 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        echo "Student " . $student->getName() . " has number " . $student->getNumber();
+
         ?>
     </div>
 
