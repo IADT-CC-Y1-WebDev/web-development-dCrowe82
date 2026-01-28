@@ -4,6 +4,8 @@ class Student {
     protected $name;
     protected $number;
 
+    private static $students = [];
+
     public function __construct($name, $number) {
 
         echo "creating student: " . $name . "<br>";
@@ -15,6 +17,7 @@ class Student {
         } 
 
         $this->number = $number;
+        self::$students[$number] = $this;
         
     }
 
@@ -23,8 +26,9 @@ class Student {
     }
 
     public function __destruct() {
-        echo "destructing student: " . $this->name;
+        echo "destructing student: " . $this->name . "<br>";
     }
+
 
     public function displayDetails() {
         echo "name: " . $this->name . ", number: " . $this->number . "<br>"; 
@@ -37,6 +41,23 @@ class Student {
     public function getNumber() {
         return $this->number;
     }
+
+
+    public static function findAll() {
+        return self::$students;
+    }
+
+    public static function getCount() {
+        return count(self::$students);
+    }
+    
+    public static function findByNumber($num) {
+        return self::$students[$num] ?? null;
+    }
+
+    public function leave() {
+        unset(self::$students[$this->number]);
+    }   
 
 }
 

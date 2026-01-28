@@ -98,7 +98,27 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            function processFiles($filename = "") {
+                if ($filename == "") {
+                    throw new Exception("filename empty");
+                }
+                return "valid";
+            }
+
+            $testFiles = ["file1", ""];
+
+            foreach ($testFiles as $file) {
+                try {
+                    echo $file . ": " . processFiles($file) . "<br>";
+                }
+                catch (Exception $e) {
+                    echo "caught error: " . $e->getMessage() . "<br>";
+                }
+                finally {
+                    echo "processing complete <br><br>";
+                }
+            }
+
         ?>
     </div>
 

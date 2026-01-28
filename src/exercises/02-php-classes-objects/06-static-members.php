@@ -36,7 +36,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+            require_once __DIR__ . '/classes/Student.php';
+            
+            $students = [];
+
+            for ($i = 0; $i < 3; $i++) {
+                $students[] = new Student("name", $i);
+                
+                echo "student count: " . Student::getCount() . "<br>";
+
+            }
+
         ?>
     </div>
 
@@ -72,6 +82,21 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+            $students = [];
+
+            for ($i = 0; $i < 3; $i++) {
+                $students[] = new Student("name$i", "$i");
+            }
+
+            foreach (Student::findAll() as $student) {
+                echo $student . "<br>";
+            }
+            echo "<br>";
+
+
+            echo Student::findByNumber(1);
+
+
         ?>
     </div>
 
@@ -92,8 +117,19 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
-        // require_once __DIR__ . '/classes/Postgrad.php';
+            require_once __DIR__ . '/classes/Undergrad.php';
+            require_once __DIR__ . '/classes/Postgrad.php';
+
+            $student = new Student("aofih", "302523");
+            $undergrad = new Undergrad("hasdgsad", "53256", "fsafa", 1);
+            $postgrad = new Postgrad("woeirha", "93057203", "sfaasf", "hiain");
+
+            foreach (Student::findAll() as $person) {
+                echo $person . "<br>";
+            }
+
+            echo Student::findByNumber("302523");
+
         ?>
     </div>
 
@@ -122,7 +158,19 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+            require_once __DIR__ . '/classes/Student.php';
+
+            $student1 = new Student("jergr", "302523");
+            $student2 = new Student("gdash", "42366243");
+            $student3 = new Student("eawtda", "123523");
+
+            echo Student::getCount() . "<br>";
+
+            $student1->leave();
+            unset($student1);
+
+            echo Student::getCount();
+
         ?>
     </div>
 

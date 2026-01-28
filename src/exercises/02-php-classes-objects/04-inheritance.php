@@ -41,7 +41,9 @@
 
             $undergrad = new Undergrad("Daniel", "098123409", "computing", 1);
 
-            echo "undergrad: " . $undergrad->getName();
+            echo "undergrad: " . $undergrad->getName() . "<br>";
+
+            $undergrad = null;
 
         ?>
     </div>
@@ -63,7 +65,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+            require_once __DIR__ . '/classes/Undergrad.php';
+
+            $undergrad = new Undergrad("Daniel", "098123409", "computing", 1);
+            echo "undergrad: " . $undergrad->getName() . " (" . $undergrad->getNumber() . ") in course " . $undergrad->getCourse() . " in year " . $undergrad->getYear() . "<br>";
+
+            $undergrad = null;
+
         ?>
     </div>
 
@@ -79,8 +87,12 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+            $undergrads = [new Undergrad("sadoih", "238374", "osadic", 2), new Undergrad("gasdggas", "34265", "gjfgfsg", 1), new Undergrad("gsdgvsd", "32351", "hergs", 3)];
+
+            foreach ($undergrads as $undergrad) {
+                echo "undergrad: " . $undergrad->getName() . " (" . $undergrad->getNumber() . ") in course " . $undergrad->getCourse() . " in year " . $undergrad->getYear() . "<br>";
+            }
+
         ?>
     </div>
 

@@ -11,6 +11,19 @@ class Undergrad extends Student {
         $this->year = $year;
         parent::__construct($name, $number);
     }
+
+    public function __toString() {
+        return "Undergrad: " . $this->name . " (" . $this->number . "), " . $this->course . ", Year " . $this->year . ".";
+    }
+
+    public function getCourse() {
+        return $this->course;
+    }
+
+    public function getYear() {
+        return $this->year;
+    }
+
 }
 
 ?>
