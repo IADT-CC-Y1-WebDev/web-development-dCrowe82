@@ -35,9 +35,9 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/College/Student.php';
-        // $student = new \College\Student("Alice", "C12345");
-        // echo $student;
+            require_once __DIR__ . '/classes/College/Student.php';
+            $student = new \College\Student("Alice", "C12345");
+            echo $student;
         ?>
     </div>
 
@@ -54,10 +54,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/College/Student.php';
-        // use College\Student;
-        // $student = new Student("Bob", "C12346");
-        // echo $student;
+            require_once __DIR__ . '/classes/College/Student.php';
+            
+            use College\Student;
+
+            $student = new Student("Bob", "C12346");
+            echo $student;
         ?>
     </div>
 
@@ -79,12 +81,22 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/College/Student.php';
-        // require_once __DIR__ . '/classes/College/Undergrad.php';
-        // require_once __DIR__ . '/classes/College/Postgrad.php';
-        // use College\Student;
-        // use College\Undergrad;
-        // use College\Postgrad;
+            require_once __DIR__ . '/classes/College/Student.php';
+            require_once __DIR__ . '/classes/College/Undergrad.php';
+            require_once __DIR__ . '/classes/College/Postgrad.php';
+
+            // use College\Student;
+            use College\Undergrad;
+            use College\Postgrad;
+
+            $stu = new Student("Daniel", "2093847");
+            $undergrad = new Undergrad("Alice", "123908", "Computing",1);
+            $postgrad = new Postgrad("Bob", "192458", "iojasd", "osiac");
+
+            echo $student . "<br>";
+            echo $undergrad . "<br>";
+            echo $postgrad . "<br>";
+
         ?>
     </div>
 
