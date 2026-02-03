@@ -15,6 +15,11 @@
 // -----------------------------------------------------------------------------
 // TODO Exercise 1: Write your solution here
 
+$visitCount = isset($_COOKIE["visit_count"]) ? (int)$_COOKIE["visit_count"] : 0;
+$visitCount++;
+
+setcookie("visit_count", $visitCount, time() + (60*60*24*30), "/");
+
 // =============================================================================
 
 // =============================================================================
@@ -26,6 +31,12 @@
 // -----------------------------------------------------------------------------
 // TODO Exercise 3: Write your solution here
 
+if (isset($_GET["reset"])) {
+    setcookie("visit_count", "", time() - 100000, "/");
+    header("Location: 01-visit-counter.php");
+    exit;
+}
+
 // =============================================================================
 
 // =============================================================================
@@ -34,6 +45,9 @@
 // 2. Set a new 'last_visit' cookie with the current timestamp
 // -----------------------------------------------------------------------------
 // TODO Exercise 4: Write your solution here
+
+$lastVisit = isset($_COOKIE["last_visit"]) ? $_COOKIE["last_visit"] : null;
+setcookie("last_visit", date("Y-m-d H:i:s"), time() + (60*60*24*30), "/"); 
 
 // =============================================================================
 ?>
@@ -72,6 +86,8 @@
         // ---------------------------------------------------------------------
         // TODO Exercise 1: Write your solution here
 
+        echo "you have visited " . (int)$_COOKIE["visit_count"] . " times!"
+
         // =====================================================================
         ?>
     </div>
@@ -94,6 +110,16 @@
         // ---------------------------------------------------------------------
         // TODO Exercise 2: Write your solution here
         
+        $visitCount = (int)$_COOKIE["visit_count"];
+
+        if ($visitCount == 1) {
+            echo "Welcome, first-time visitor!";
+        } elseif ($visitCount < 10) {
+            echo "Hello again!";
+        } else {
+            echo "Welcome back!";
+        }
+
         // =====================================================================
         ?>
     </div>
@@ -136,6 +162,10 @@
         // ---------------------------------------------------------------------
         // TODO Exercise 4: Write your solution here
         
+        if (isset($_COOKIE["last_visit"])) {
+            echo "Your last visit was: " . $_COOKIE["last_visit"];
+        }
+
         // =====================================================================
         ?>
     </div>
