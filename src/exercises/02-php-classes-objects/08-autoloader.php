@@ -38,16 +38,23 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // spl_autoload_register(function ($class) {
-        //     $path = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-        //     $file = __DIR__ . '/classes/' . $path . '.php';
-        //     if (file_exists($file)) {
-        //         require_once $file;
-        //     }
-        // });
-        // use College\Student;
-        // $student = new Student("Alice", "C12345");
-        // echo $student;
+            spl_autoload_register(function ($class) {
+
+                $path = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+
+                $file = __DIR__ . '/classes/' . $path . '.php';
+
+                if (file_exists($file)) {
+                    require_once $file;
+                }
+
+            });
+
+            use College\Student;
+
+            $student = new Student("Alice", "C12345");
+            echo $student;
+
         ?>
     </div>
 
@@ -65,10 +72,19 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/etc/config.php';
-        // use College\Student;
-        // use College\Undergrad;
-        // use College\Postgrad;
+            require_once __DIR__ . '/etc/config.php';
+
+            // use College\Student;
+            use College\Undergrad;
+            use College\Postgrad;
+
+            $stu = new Student("Daniel", "2093847");
+            $undergrad = new Undergrad("Alice", "123908", "Computing",1);
+            $postgrad = new Postgrad("Bob", "192458", "iojasd", "osiac");
+
+            echo $stu . "<br>";
+            echo $undergrad . "<br>";
+            echo $postgrad . "<br>";
         ?>
     </div>
 
@@ -92,7 +108,18 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+            $stu2 = new Student("fahsag", "2346346");
+            $undergrad2 = new Undergrad("agsdagas", "235623", "adfhfda", 2);
+            $postgrad2 = new Postgrad("agawegawe", "235235", "hasgag", "sgahfr");
+
+            foreach (Student::findAll() as $student) {
+                echo $student . "<br>";
+            }
+
+            echo "finding: " . Student::findByNumber("235623");
+
+
+
         ?>
     </div>
 

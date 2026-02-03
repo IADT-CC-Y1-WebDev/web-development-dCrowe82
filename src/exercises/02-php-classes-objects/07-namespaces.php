@@ -93,7 +93,7 @@
             $undergrad = new Undergrad("Alice", "123908", "Computing",1);
             $postgrad = new Postgrad("Bob", "192458", "iojasd", "osiac");
 
-            echo $student . "<br>";
+            echo $stu . "<br>";
             echo $undergrad . "<br>";
             echo $postgrad . "<br>";
 
