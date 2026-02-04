@@ -12,12 +12,18 @@ require_once './etc/config.php';
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // =============================================================================
 
 // =============================================================================
 // Exercise 2: Initialize the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+
+$cart = ShoppingCart::getInstance();
 
 // =============================================================================
 
@@ -30,6 +36,13 @@ require_once './etc/config.php';
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 
+if (isset($_GET["remove"])) {
+    $removeID = (int)$_GET["remove"];
+    $cart->remove($removeID);
+    header("Location: cart.php");
+    exit;
+}
+
 // =============================================================================
 
 // =============================================================================
@@ -39,6 +52,12 @@ require_once './etc/config.php';
 // 2. Redirect back to cart.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+
+if (isset($_GET["clear"])) {
+    $cart->clear();
+    header("Location: cart.php");
+    exit;
+}
 
 // =============================================================================
 
@@ -50,6 +69,12 @@ require_once './etc/config.php';
 // 3. Redirect back to cart.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+
+if (isset($_GET["update"]) && isset($_GET["qty"])) {
+    $cart->updateQuantity((int)$_GET["update"], (int)$_GET["qty"]);
+    header("Location: cart.php");
+    exit;
+}
 
 // =============================================================================
 
@@ -169,17 +194,12 @@ $cartCount = isset($cart) ? $cart->getCount() : 0;
                         <td><?= htmlspecialchars($item->name) ?></td>
                         <td>&euro;<?= number_format($item->price, 2) ?></td>
                         <td>
-                            <?php
-                            // =================================================
-                            // Bonus Exercise: Insert Quantity Links 
-                            // -------------------------------------------------
-                            ?>
+                            <a href="?update=<?= $item->productId ?>&qty=<?= $item->quantity - 1 ?>">-</a>
                             <span class="qty-links">
                                 <?= $item->quantity ?>
                             </span>
-                            <?php
-                            // =================================================
-                            ?>
+                            <a href="?update=<?= $item->productId ?>&qty=<?= $item->quantity + 1 ?>">+</a>
+                            
                         </td>
                         <td>&euro;<?= number_format($item->getSubtotal(), 2) ?></td>
                         <td><a href="?remove=<?= $item->productId ?>">Remove</a></td>
