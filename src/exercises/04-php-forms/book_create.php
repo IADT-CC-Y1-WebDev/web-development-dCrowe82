@@ -88,7 +88,7 @@ $formats = [
                  ===========================================================
                  TODO: Repopulate title field
             -->
-            <input type="text" id="title" name="title" value="">
+            <input type="text" id="title" name="title" value="<?= h(old("title")) ?>">
 
             <!-- ===========================================================
                  STEP 5: Display Errors
@@ -96,6 +96,9 @@ $formats = [
                  ===========================================================
                  TODO: Display error message if title validation fails
             -->
+            <?php if (error("title")): ?>
+                <p class="error"><?= error("title") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -105,9 +108,12 @@ $formats = [
         <div class="form-group">
             <label for="author">Author:</label>
             <!-- TODO: Repopulate author field                               -->
-            <input type="text" id="author" name="author" value="">
+            <input type="text" id="author" name="author" value="<?= h(old("author")) ?>">
 
             <!-- TODO: Display error message if author validation fails      -->
+             <?php if (error("author")): ?>
+                <p class="error"><?= error("year") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -133,6 +139,9 @@ $formats = [
             </select>
 
             <!-- TODO: Display error message if publisher validation fails   -->
+             <?php if (error("publisher_id")): ?>
+                <p class="error"><?= error("publisher_id") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -142,9 +151,12 @@ $formats = [
         <div class="form-group">
             <label for="year">Year:</label>
             <!-- TODO: Repopulate year field                                 -->
-            <input type="text" id="year" name="year" value="">
+            <input type="text" id="year" name="year" value="<?= h(old("year")) ?>">
 
             <!-- TODO: Display error message if year validation fails        -->
+             <?php if (error("year")): ?>
+                <p class="error"><?= error("year") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -154,9 +166,12 @@ $formats = [
         <div class="form-group">
             <label for="isbn">ISBN:</label>
             <!-- TODO: Repopulate ISBN field                                 -->
-            <input type="text" id="isbn" name="isbn" value="">
+            <input type="text" id="isbn" name="isbn" value="<?= h(old("isbn")) ?>">
 
             <!-- TODO: Display error message if ISBN validation fails        -->
+             <?php if (error("isbn")): ?>
+                <p class="error"><?= error("isbn") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -182,6 +197,9 @@ $formats = [
             </div>
 
             <!-- TODO: Display error message if formats validation fails     -->
+             <?php if (error("format_ids")): ?>
+                <p class="error"><?= error("format_ids") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -191,9 +209,12 @@ $formats = [
         <div class="form-group">
             <label for="description">Description:</label>
             <!-- TODO: Repopulate description field                          -->
-            <textarea id="description" name="description" rows="5"></textarea>
+            <textarea id="description" name="description" rows="5"><?= h(old("description")) ?></textarea>
 
             <!-- TODO: Display error message if description validation fails -->
+             <?php if (error("description")): ?>
+                <p class="error"><?= error("description") ?></p>
+            <?php endif;?>
 
         </div>
 
@@ -207,6 +228,9 @@ $formats = [
             <input type="file" id="cover" name="cover" accept="image/*">
 
             <!-- TODO: Display error message if cover validation fails       -->
+             <?php if (error("cover")): ?>
+                <p class="error"><?= error("cover") ?></p>
+            <?php endif;?>
 
         </div>
 
