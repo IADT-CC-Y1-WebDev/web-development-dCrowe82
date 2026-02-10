@@ -24,6 +24,8 @@ $errors = [];
 // Start the session
 startSession();
 
+// dd($_FILES, true);
+
 try {
     // =========================================================================
     // STEP 1: View Posted Data
@@ -31,7 +33,7 @@ try {
     // =========================================================================
     // TODO: First, just dump the posted data to see what's submitted
 
-    dd($_POST);
+    
 
     // =========================================================================
     // STEP 2: Check Request Method
@@ -56,10 +58,13 @@ try {
     // 'format_ids' => $_POST['format_ids'] ?? []
     
     $data["format_ids"] = $_POST["format_ids"] ?? [];
+    
 
     foreach($_POST as $key => $value) {
         $data[$key] = $_POST[$key] ?? null;
     }
+    
+    $data["cover"] = $_FILES["cover"] ?? null;
 
     // $data = [
     //     "title" => $_POST["title"] ?? null,
@@ -88,7 +93,7 @@ try {
         "isbn" => "required|nonempty|min:13|max:13",
         "description" => "required|nonempty|min:10|max:255",
         "format_ids" => "required|nonempty|array|min:1|max:4",
-        "cover" => "image"
+        "cover" => "required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880"
     ];
 
     $validator = new Validator($data, $rules);
@@ -122,13 +127,18 @@ try {
     // throw an exception
     // Hint: Use the ImageUpload class to handle the upload
 
-
+    $uploader = new ImageUpload();
+    $imageFilename = $uploader->process($_FILES["cover"]);
+    
+    dd($data);
+    
     // =========================================================================
     // STEP 10: Complete Handler
     // See: /examples/04-php-forms/step-10-complete/
     // =========================================================================
     // TODO: Clear form data on success (before redirect)
-
+    
+    
 
     // =========================================================================
     // STEP 8: Flash Messages
