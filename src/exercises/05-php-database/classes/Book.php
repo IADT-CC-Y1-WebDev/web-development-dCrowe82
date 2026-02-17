@@ -45,6 +45,21 @@ class Book
     {
         // TODO: Get database connection from DB singleton
         // TODO: If $data is not empty, populate properties using null coalescing operator
+        
+        $db = DB::getInstance()->getConnection();
+
+        if (!empty($data)) {
+            $this->id = $data["id"] ?? null;
+            $this->title = $data["title"] ?? null;
+            $this->author = $data["author"] ?? null;
+            $this->year = $data["year"] ?? null;
+            $this->publisher_id = $data["publisher_id"] ?? null;
+            $this->description = $data["description"] ?? null;
+            $this->isbn = $data["isbn"] ?? null;
+            $this->cover_filename = $data["cover_filename"];
+        }
+
+
     }
 
     // =========================================================================
@@ -53,6 +68,17 @@ class Book
     public static function findAll()
     {
         // TODO: Implement this method
+        $db = DB::getInstance()->getConnection();
+
+        $stmt = $db->prepare("SELECT * FROM books ORDER BY title");
+        $stmt->execute();
+
+        $books = [];
+        while ($row = $stmt->fetch()) {
+            $books[] = new Book($row);
+        }
+
+        return $books;
     }
 
     // =========================================================================
@@ -61,6 +87,17 @@ class Book
     public static function findById($id)
     {
         // TODO: Implement this method
+        $db = DB::getInstance()->getConnection();
+
+        $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+        $stmt->execute(["id" => $id]);
+
+        $row = $stmt->fetch();
+        if ($row) {
+            return new Book($row);
+        }
+
+        return null;
     }
 
     // =========================================================================
@@ -69,6 +106,17 @@ class Book
     public static function findByPublisher($publisherId)
     {
         // TODO: Implement this method
+        $db = DB::getInstance()->getConnection();
+        
+        $stmt = $db->prepare("SELECT * FROM books WHERE publisher_id = :publisher_id");
+        $stmt->execute(["publishder_id" => $publisherId]);
+
+        $books = [];
+        foreach($stmt->fetchAll() as $book) {
+            $books[] = new Book($book);
+        }
+
+        return $books;
     }
 
     // =========================================================================
@@ -76,6 +124,49 @@ class Book
     // =========================================================================
     public function save()
     {
+        if ($this->id) {
+            $stmt = $this->db->prepare("
+                UPDATE books
+                SET title = :title,
+                    author = :author,
+                    publisher_id = :publisher_id,
+                    year = :year,
+                    isbn = :isbn,
+                    description = :description,
+                    cover_filename = :cover_filename
+                WHERE id = :id
+            ");
+
+            $params = [
+                "title" => $this->title,
+                "author" => $this->author,
+                "publisher_id" => $this->publisher_id,
+                "year" => $this->year,
+                "isbn" => $this->isbn,
+                "description" => $this->description,
+                "cover_filename" => $this->cover_filename,
+                "id" => $this->id
+            ];
+
+        } else {
+            $stmt = $this->db->prepare("
+                INSERT INTO books (title, author, publisher_id, year, isbn, description, cover_filename)
+                VALUES (:title, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
+            ")
+
+            $params = [
+                "title" => $this->title,
+                "author" => $this->author,
+                "publisher_id" => $this->publisher_id,
+                "year" => $this->year,
+                "isbn" => $this->isbn,
+                "description" => $this->description,
+                "cover_filename" => $this->cover_filename,
+            ];
+
+
+        }
+        
         // TODO: Implement this method
     }
 

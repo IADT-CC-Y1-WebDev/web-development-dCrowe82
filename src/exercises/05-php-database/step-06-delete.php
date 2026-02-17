@@ -43,11 +43,39 @@ catch (PDOException $e) {
             <?php
             // TODO: Write your solution here
             // 1. INSERT a temporary book
+            $stmt = $db->prepare("
+                INSERT INTO books (title, author, publisher_id, year, description)
+                VALUES (:title, :author, :publisher_id, :year, :description)
+            ");
+
+            $success = $stmt->execute([
+                "title" => "Temporary book",
+                "author" => "My Name",
+                "publisher_id" => 1,
+                "year" => 2024,
+                "description" => "A book I created for learning PDO"
+            ]);
+
             // 2. Get the new ID
             // 3. Display "Created book with ID: X"
+            if ($success && $stmt->rowCount() == 1) {
+                $newId = $db->lastInsertId();
+                echo "successfully created book with id: " . $newId . "<br>"; 
+            } else {
+                echo "insert failed";
+            }
+
             // 4. DELETE FROM books WHERE id = :id
+            $stmt = $db->prepare("DELETE FROM books WHERE id = :id");
+            $stmt->execute(["id" => $newId]);
+
             // 5. Check rowCount()
+            echo "deleted: " . $stmt->rowCount() . " row(s)";
+
             // 6. Try to fetch the book again to verify deletion
+            $stmt = $db->query("SELECT * FROM books WHERE id = $newId");
+            echo $stmt->fetch()["title"];
+
             ?>
         </div>
     </div>

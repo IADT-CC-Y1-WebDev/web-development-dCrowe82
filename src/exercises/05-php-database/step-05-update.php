@@ -47,6 +47,39 @@ catch (PDOException $e) {
             // 3. Execute with new description + timestamp
             // 4. Check rowCount()
             // 5. Fetch and display updated book
+
+                $stmt = $db->query("SELECT * FROM books WHERE id = 1");
+                $book = $stmt->fetch();
+                foreach ($book as $key => $val) {
+                    echo $key . ": " . $val . ", ";
+                }
+                echo "<br>";
+
+                $stmt = $db->prepare("
+                    UPDATE books
+                    SET description = :description
+                    WHERE id = :id
+                ");
+
+                $newDescription = "a new description with a timestamp of " . time();
+
+                $success = $stmt->execute([
+                    "description" => $newDescription,
+                    "id" => 1
+                ]);
+
+                if (!$success || $stmt->rowCount() == 0) {
+                    echo "row update failed <br>";
+                } else {
+                    $stmt = $db->query("SELECT * FROM books WHERE id = 1");
+                    $book = $stmt->fetch();
+                    foreach ($book as $key => $val) {
+                        echo $key . ": " . $val . ", ";
+                    }
+                }
+
+                
+
             ?>
         </div>
     </div>

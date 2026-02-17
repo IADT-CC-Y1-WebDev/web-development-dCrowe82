@@ -31,10 +31,24 @@ require_once __DIR__ . '/lib/config.php';
             <?php
             // TODO: Write your solution here
             // 1. Get connection: $db = DB::getInstance()->getConnection();
-            // 2. Execute: SELECT COUNT(*) as total FROM books
+            $db = DB::getInstance()->getConnection();
+
+            // 2. Execute: SELECT COUNT(*) as total FROM books#
+            $stmt = $db->query("SELECT COUNT(*) as total FROM books");
+
             // 3. Display the count
+            echo $stmt->fetch()["total"];
+
             // 4. Get DB::getInstance() twice and compare with ===
+            $db2 = DB::getInstance()->getConnection();
+
             // 5. Display whether they are the same instance
+            if ($db === $db2) {
+                echo "<br> same";
+            } else {
+                echo "not same";
+            }
+
             ?>
         </div>
     </div>
