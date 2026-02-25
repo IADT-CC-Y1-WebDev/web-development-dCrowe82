@@ -152,7 +152,7 @@ class Book
             $stmt = $this->db->prepare("
                 INSERT INTO books (title, author, publisher_id, year, isbn, description, cover_filename)
                 VALUES (:title, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
-            ")
+            ");
 
             $params = [
                 "title" => $this->title,

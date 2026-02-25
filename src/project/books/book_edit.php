@@ -8,21 +8,6 @@ require_once './php/lib/utils.php';
 // Start the session
 startSession();
 
-/**
- * Mock data for the form. 
- * In a real application, these would be fetched from the database tables.
- */
-$publishers = [
-    ['id' => 1, 'name' => 'Penguin Random House'],
-    ['id' => 2, 'name' => 'HarperCollins'],
-    ['id' => 3, 'name' => 'Simon & Schuster'],
-    ['id' => 4, 'name' => 'Hachette Book Group'],
-    ['id' => 5, 'name' => 'Macmillan Publishers'],
-    ['id' => 6, 'name' => 'Scholastic Corporation'],
-    ['id' => 7, 'name' => 'O\'Reilly Media']
-];
-
-
 try {
     $book = Book::findById($_GET["id"]);
 
@@ -33,6 +18,7 @@ try {
     }
 
     $formats = Format::findAll();
+    $publishers = Publisher::findAll();
     
 } 
 catch (PDOException $e) {
@@ -54,11 +40,16 @@ catch (PDOException $e) {
     <?php dd(getFormData()); ?>
     <?php dd(getFormErrors()); ?>
 
-    <?php print_r($bookFormatIds) ?>
 
-    <form action="book_store.php" method="POST" enctype="multipart/form-data">
+    <form action="book_update.php" method="POST" enctype="multipart/form-data">
+
+        
 
         <div class="form-group">
+            <div class="input">
+                <input type="hidden" name="id" value="<?= h($book->id) ?>">
+            </div>
+
             <label for="title">Book Title:</label>
 
             <input type="text" id="title" name="title" value="<?= h(old("title", $book->title)) ?>">
@@ -86,8 +77,8 @@ catch (PDOException $e) {
                 <option value="">-- Select Publisher --</option>
 
                 <?php foreach ($publishers as $pub): ?>
-                    <option value="<?= $pub['id'] ?>" <?= chosen("publisher_id", $pub["id"], $book->publisher_id) ? "selected" : "" ?>>
-                        <?= h($pub['name']) ?>
+                    <option value="<?= $pub->id ?>" <?= chosen("publisher_id", $pub->id, $book->publisher_id) ? "selected" : "" ?>>
+                        <?= h($pub->name) ?>
                     </option>
                 <?php endforeach; ?>
             </select>

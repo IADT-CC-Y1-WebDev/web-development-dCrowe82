@@ -23,7 +23,7 @@ $errors = [];
 
 startSession();
 
-dd($_FILES, true);
+// dd($_FILES, true);
 
 try {
 
@@ -44,7 +44,7 @@ try {
         "author" => "required|nonempty|min:5|max:255",
         "publisher_id" => "required|nonempty|integer",
         "year" => "required|nonempty|integer|minvalue:1900|maxvalue:" . date("Y"),
-        "isbn" => "required|nonempty|min:13|max:13",
+        "isbn" => "required|nonempty|min:13|max:14",
         "description" => "required|nonempty|min:10|max:255",
         "format_ids" => "required|nonempty|array|min:1|max:4",
         "cover_filename" => "required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880"
@@ -66,7 +66,7 @@ try {
     $coverFilename = $uploader->process($_FILES["cover"]);
 
     if (!$coverFilename) {
-        throw new Exception('Failed to process and save the cover.');
+        throw new Exception("Failed to process and save the cover.");
     }
 
     $book = new Book($data);
@@ -83,7 +83,7 @@ try {
     // TODO: On successful registration, set a success flash message and 
     // redirect back to the form
 
-    redirect('book_view.php?id=' . $book->id);
+    redirect("book_view.php?id=" . $book->id);
     
 }
 catch (Exception $e) {

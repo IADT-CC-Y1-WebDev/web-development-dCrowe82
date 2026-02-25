@@ -141,7 +141,7 @@ class Book
         }
 
         // Ensure one row affected
-        if ($stmt->rowCount() !== 1) {
+        if ($stmt->rowCount() !== 1 && $stmt->rowCount() !== 0) {
             throw new Exception("Failed to save book.");
         }
 
@@ -157,7 +157,7 @@ class Book
             return false;
         }
 
-        $stmt = $this->db->prepare("DELETE FROM games WHERE id = :id");
+        $stmt = $this->db->prepare("DELETE FROM books WHERE id = :id");
         return $stmt->execute(['id' => $this->id]);
     }
 

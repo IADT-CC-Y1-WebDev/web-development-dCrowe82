@@ -30,7 +30,7 @@ class Format {
 
     public static function findById($id) {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM formtats WHERE id = :id");
+        $stmt = $db->prepare("SELECT * FROM formats WHERE id = :id");
         $stmt->execute(['id' => $id]);
 
         $row = $stmt->fetch();

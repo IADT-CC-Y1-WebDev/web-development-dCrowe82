@@ -8,26 +8,9 @@ require_once './php/lib/utils.php';
 // Start the session
 startSession();
 
-/**
- * Mock data for the form. 
- * In a real application, these would be fetched from the database tables.
- */
-$publishers = [
-    ['id' => 1, 'name' => 'Penguin Random House'],
-    ['id' => 2, 'name' => 'HarperCollins'],
-    ['id' => 3, 'name' => 'Simon & Schuster'],
-    ['id' => 4, 'name' => 'Hachette Book Group'],
-    ['id' => 5, 'name' => 'Macmillan Publishers'],
-    ['id' => 6, 'name' => 'Scholastic Corporation'],
-    ['id' => 7, 'name' => 'O\'Reilly Media']
-];
+$publishers = Publisher::findAll();
+$formats = Format::findAll();
 
-$formats = [
-    ['id' => 1, 'name' => 'Hardcover'],
-    ['id' => 2, 'name' => 'Paperback'],
-    ['id' => 3, 'name' => 'Ebook'],
-    ['id' => 4, 'name' => 'Audiobook']
-];
 ?>
 
 <!DOCTYPE html>
@@ -72,8 +55,8 @@ $formats = [
                 <option value="">-- Select Publisher --</option>
 
                 <?php foreach ($publishers as $pub): ?>
-                    <option value="<?= $pub['id'] ?>" <?= chosen("publisher_id", $pub["id"]) ? "selected" : "" ?>>
-                        <?= h($pub['name']) ?>
+                    <option value="<?= $pub->id ?>" <?= chosen("publisher_id", $pub->id) ? "selected" : "" ?>>
+                        <?= h($pub->name) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -115,10 +98,10 @@ $formats = [
                         <input 
                             type="checkbox" 
                             name="format_ids[]" 
-                            value="<?= $format['id'] ?>" 
-                            <?= chosen("format_ids", $format["id"]) ? "checked" : "" ?>
+                            value="<?= $format->id ?>" 
+                            <?= chosen("format_ids", $format->id) ? "checked" : "" ?>
                         >
-                        <?= h($format['name']) ?>
+                        <?= h($format->name) ?>
                     </label>
                 <?php endforeach; ?>
             </div>
