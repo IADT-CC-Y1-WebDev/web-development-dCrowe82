@@ -32,14 +32,19 @@ catch (PDOException $e) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>book edit</title>
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <!-- Display form data and errors for debugging purposes                 -->
-    <?php dd(getFormData()); ?>
-    <?php dd(getFormErrors()); ?>
+    <!-- <?php dd(getFormData()); ?>
+    <?php dd(getFormErrors()); ?> -->
 
+    <div class="container"><div class="width-12">
 
     <form action="book_update.php" method="POST" enctype="multipart/form-data">
 
@@ -163,6 +168,8 @@ catch (PDOException $e) {
             <button type="submit" class="button">Save Book</button>
         </div>
     </form>
+
+    </div></div>
 
     <!-- =================================================================== -->
     <!-- STEP 10: Clean Up                                                   -->

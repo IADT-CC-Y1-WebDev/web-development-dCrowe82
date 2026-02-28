@@ -138,6 +138,6 @@ catch (Exception $e) {
     }
     else {
 
-        redirect("book_list.php");
+        redirect("index.php");
     }
 }
