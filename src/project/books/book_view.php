@@ -5,7 +5,7 @@ require_once __DIR__ . '/php/lib/utils.php';
 try {
     $book = Book::findById($_GET["id"]);
 
-    $publisher = Publisher::findById($book->id);
+    $publisher = Publisher::findById($book->publisher_id);
 
     $formats = Format::findByBook($book->id);
     $formatNames = [];

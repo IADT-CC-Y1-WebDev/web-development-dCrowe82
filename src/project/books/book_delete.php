@@ -62,7 +62,7 @@ try {
     setFlashMessage('success', 'book deleted successfully.');
 
     // Redirect to book details page
-    redirect('book_list.php');
+    redirect('index.php');
 }
 catch (Exception $e) {
     // Set error flash message
@@ -77,6 +77,8 @@ catch (Exception $e) {
         redirect('book_view.php?id=' . $data['id']);
     }
     else {
-        redirect('book_list.php');
+        redirect('index.php');
     }
+
+
 }
