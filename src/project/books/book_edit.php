@@ -39,12 +39,16 @@ catch (PDOException $e) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<?php include 'php/inc/navbar.php'; ?>
     <!-- Display form data and errors for debugging purposes                 -->
     <!-- <?php dd(getFormData()); ?>
     <?php dd(getFormErrors()); ?> -->
 
-    <div class="container"><div class="width-12">
+    <div class="container">
+    <div class="width-12">
+        <?php require 'php/inc/flash_message.php'; ?>
+    </div>    
+    <div class="width-12">
 
     <form action="book_update.php" method="POST" enctype="multipart/form-data">
 

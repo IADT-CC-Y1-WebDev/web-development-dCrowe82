@@ -28,8 +28,13 @@ catch (PDOException $e) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<?php include 'php/inc/navbar.php'; ?>
 <div class="container" style="margin:auto;">
+
+    <div class="width-12">
+        <?php require 'php/inc/flash_message.php'; ?>
+    </div>
+
     <div class="width-3">
         <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />
         

@@ -76,27 +76,18 @@ try {
     clearFormData();
     clearFormErrors();
 
-    // =========================================================================
-    // STEP 8: Flash Messages
-    // See: /examples/04-php-forms/step-08-flash-messages/
-    // =========================================================================
-    // TODO: On successful registration, set a success flash message and 
-    // redirect back to the form
+    setFlashMessage('success', 'Book stored successfully.');
 
     redirect("book_view.php?id=" . $book->id);
     
 }
 catch (Exception $e) {
 
+    setFlashMessage('error', 'Error: ' . $e->getMessage());
+
     setFormErrors($errors);
 
     setFormData($data);
-
-    // =========================================================================
-    // STEP 8: Flash Messages
-    // See: /examples/04-php-forms/step-08-flash-messages/
-    // =========================================================================
-    // TODO: On validation error, you set an error flash message
 
     redirect("book_create.php");
 }

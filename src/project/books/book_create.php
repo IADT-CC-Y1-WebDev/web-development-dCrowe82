@@ -23,13 +23,16 @@ $formats = Format::findAll();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<?php include 'php/inc/navbar.php'; ?>
     <!-- Display form data and errors for debugging purposes                 -->
     <!-- <?php dd(getFormData()); ?>
     <?php dd(getFormErrors()); ?> -->
 
     <div class="container">
-
+        <div class="width-12">
+            <?php require 'php/inc/flash_message.php'; ?>
+        </div>
+        
         <div class="width-12">
             <h1>Create Book</h1>
         </div>

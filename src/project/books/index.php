@@ -19,35 +19,41 @@ catch (PDOException $e) {
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/style.css">
+
+    
 </head>
 
 <body>
-
+<?php include 'php/inc/navbar.php'; ?>
 <div class="container">
     <div class="width-12 cards">
 
         <?php foreach ($books as $book): ?>
         <div class="card">
+            
             <div class="top-content">
+                <a href="book_view.php?id=<?= h($book->id) ?>"><img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" /></a>
+                
+            </div>
+
+            <div class="bottom-content">
                 <h2><?= h($book->title) ?></h2>
                 <p><?= h($book->author) ?>, <?= h($book->year) ?></p>
-            </div>
-            <div class="bottom-content">
-                <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />
                 <div class="actions">
-                    <a href="book_view.php?id=<?= h($book->id) ?>">View</a>/ 
-                    <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>/ 
+                    <a href="book_view.php?id=<?= h($book->id) ?>">View</a>|
+                    <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>| 
                     <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a>
                 </div>
             </div>
+            
         </div>
         <?php endforeach; ?>
 
     </div>
 
-    <div class="width-12">
+    <!-- <div class="width-12">
         <a class="button" href="book_create.php">Create new</a>
-    </div>
+    </div> -->
 </div>
 
 </body>

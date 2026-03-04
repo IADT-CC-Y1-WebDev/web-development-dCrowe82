@@ -28,7 +28,7 @@ try {
         "title" => "required|nonempty|min:3|max:255",
         "author" => "required|nonempty|min:3|max:255",
         "publisher_id" => "required|nonempty|integer",
-        "year" => "required|nonempty|integer|minvalue:1900|maxvalue:" . date("Y"),
+        "year" => "required|nonempty|integer|minvalue:1500|maxvalue:" . date("Y"),
         "isbn" => "required|nonempty|min:13|max:14",
         "description" => "required|nonempty|min:10|max:255",
         "format_ids" => "required|nonempty|array|min:1|max:4",
@@ -102,12 +102,7 @@ try {
     clearFormData();
     clearFormErrors();
 
-    // =========================================================================
-    // STEP 8: Flash Messages
-    // See: /examples/04-php-forms/step-08-flash-messages/
-    // =========================================================================
-    // TODO: On successful registration, set a success flash message and 
-    // redirect back to the form
+    setFlashMessage('success', 'Book updated successfully.');
 
     redirect("book_view.php?id=" . $book->id);
     
@@ -118,11 +113,11 @@ catch (Exception $e) {
         $uploader->deleteImage($coverFilename);
     }
 
+    setFlashMessage('error', 'Error: ' . $e->getMessage());
+
     setFormErrors($errors);
 
     setFormData($data);
-
-    print_r("something");
 
     // =========================================================================
     // STEP 8: Flash Messages
