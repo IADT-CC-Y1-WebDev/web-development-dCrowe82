@@ -72,6 +72,21 @@ try {
     $book = new Book($data);
     $book->cover_filename = $coverFilename;
     $book->save();
+
+    
+    foreach ($data["format_ids"] as $formatId) {
+        if (!Format::findById($formatId)) {
+            throw new Exception("one or more selected formats do not exist");
+        }
+    }
+
+    if (!empty($data["format_ids"]) && is_array($data["format_ids"])) {
+        foreach ($data["format_ids"] as $formatId) {
+            BookFormat::create($book->id, $formatId);
+        }
+    }
+
+    
     
     clearFormData();
     clearFormErrors();

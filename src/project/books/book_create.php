@@ -24,42 +24,34 @@ $formats = Format::findAll();
 </head>
 <body>
 <?php include 'php/inc/navbar.php'; ?>
-    <!-- Display form data and errors for debugging purposes                 -->
-    <!-- <?php dd(getFormData()); ?>
-    <?php dd(getFormErrors()); ?> -->
 
     <div class="container">
-        <div class="width-12">
+
+        <div class="width-3"></div>
+        <div class="width-9">
             <?php require 'php/inc/flash_message.php'; ?>
         </div>
         
-        <div class="width-12">
+        <div class="width-3"></div>
+        <div class="width-9">
             <h1>Create Book</h1>
         </div>
 
-        <div class="width-12">
-            <form action="book_store.php" method="POST" enctype="multipart/form-data">
+        <div class="width-3"></div>
+        <div class="width-9">
+            <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
 
                 <div class="form-group">
                     <label for="title">Book Title:</label>
-
                     <input type="text" id="title" name="title" value="<?= h(old("title")) ?>">
-
-                    <?php if (error("title")): ?>
-                        <p class="error"><?= error("title") ?></p>
-                    <?php endif;?>
+                    <p class="error"><?= error("title") ?></p>
 
                 </div>
 
                 <div class="form-group">
                     <label for="author">Author:</label>
-
                     <input type="text" id="author" name="author" value="<?= h(old("author")) ?>">
-
-                    <?php if (error("author")): ?>
-                        <p class="error"><?= error("year") ?></p>
-                    <?php endif;?>
-
+                    <p class="error"><?= error("author") ?></p>
                 </div>
 
                 <div class="form-group">
@@ -73,33 +65,20 @@ $formats = Format::findAll();
                             </option>
                         <?php endforeach; ?>
                     </select>
-
-                    <?php if (error("publisher_id")): ?>
-                        <p class="error"><?= error("publisher_id") ?></p>
-                    <?php endif;?>
+                    <p class="error"><?= error("publisher_id") ?></p>
 
                 </div>
 
                 <div class="form-group">
                     <label for="year">Year:</label>
-
                     <input type="text" id="year" name="year" value="<?= h(old("year")) ?>">
-
-                    <?php if (error("year")): ?>
-                        <p class="error"><?= error("year") ?></p>
-                    <?php endif;?>
-
+                    <p class="error"><?= error("year") ?></p>
                 </div>
 
                 <div class="form-group">
                     <label for="isbn">ISBN:</label>
-
                     <input type="text" id="isbn" name="isbn" value="<?= h(old("isbn")) ?>">
-
-                    <?php if (error("isbn")): ?>
-                        <p class="error"><?= error("isbn") ?></p>
-                    <?php endif;?>
-
+                    <p class="error"><?= error("isbn") ?></p>
                 </div>
 
                 <div class="form-group">
@@ -119,32 +98,19 @@ $formats = Format::findAll();
                         <?php endforeach; ?>
                     </div>
 
-                    <?php if (error("format_ids")): ?>
-                        <p class="error"><?= error("format_ids") ?></p>
-                    <?php endif;?>
-
+                    <p class="error"><?= error("format_ids") ?></p>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description:</label>
-
                     <textarea id="description" name="description" rows="5"><?= h(old("description")) ?></textarea>
-
-                    <?php if (error("description")): ?>
-                        <p class="error"><?= error("description") ?></p>
-                    <?php endif;?>
-
+                    <p class="error"><?= error("description") ?></p>
                 </div>
 
                 <div class="form-group">
                     <label for="cover">Book Cover Image (max 2MB):</label>
-
                     <input type="file" id="cover" name="cover" accept="image/*">
-
-                    <?php if (error("cover")): ?>
-                        <p class="error"><?= error("cover") ?></p>
-                    <?php endif;?>
-
+                    <p class="error"><?= error("cover_filename") ?></p>
                 </div>
 
                 <div class="form-group">
@@ -153,13 +119,12 @@ $formats = Format::findAll();
             </form>
         </div>
     </div>
-    <!-- =================================================================== -->
-    <!-- STEP 10: Clean Up                                                   -->
-    <!-- See: /examples/04-php-forms/step-10-complete/                       -->
-    <!-- =================================================================== -->
-    <!-- TODO: Clear form data and errors after displaying the page          -->
+
     <?php
-    //   Clear form data and errors
+        // Clear form data after displaying
+        clearFormData();
+        // Clear errors after displaying
+        clearFormErrors();
     ?>
     </body>
 </html>

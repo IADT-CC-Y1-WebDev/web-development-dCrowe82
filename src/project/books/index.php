@@ -26,6 +26,11 @@ catch (PDOException $e) {
 <body>
 <?php include 'php/inc/navbar.php'; ?>
 <div class="container">
+
+    <div class="width-12">
+        <?php require 'php/inc/flash_message.php'; ?>
+    </div>
+
     <div class="width-12 cards">
 
         <?php foreach ($books as $book): ?>
