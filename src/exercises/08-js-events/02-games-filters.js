@@ -36,19 +36,49 @@ function getFilters() {
     };
 }
 
-function cardMatches(crd) {
-    let filters = getFilters();
-    return crd.dataset.title.toLowerCase().includes(filters.titleFilter);
+function cardMatches(card, filters) {
+    let title = card.dataset.title.toLowerCase();
+    let genre = card.dataset.genre;
+    let platform = card.dataset.platform;
+
+    let matchTitle = title.includes(filters.titleFilter) || filters.titleFilter === "";
+    let matchGenre = genre === filters.genreFilter || filters.genreFilter === "";
+    let matchPlatforms = platform.includes(filters.platformFilter) || filters.platformFilter === "";
+
+    return matchTitle && matchGenre && matchPlatforms;
+}
+
+function sortCards(cards, sortBy) {
+    const list = cards.slice();
+    
+    list.sort((a, b) => {
+        let titleA = a.dataset.title.toLowerCase();
+        let titleB = b.dataset.title.toLowerCase();
+        let yearA = Number(a.dataset.year);
+        let yearB = Number(b.dataset.year);
+
+        if (sortBy === "year_desc") return yearB - yearA;
+        if (sortBy === "year_asc") return yearA - yearB;
+        
+        return titleA.localeCompare(titleB);
+    });
+
+    return list;
 }
 
 function applyFilters() {
-    let matches = [];
+    let filters = getFilters();
 
     for (let i = 0; i != cards.length; i++) {
         let card = cards[i];
-        matches[i] = cardMatches(card);
+        card.classList.toggle("hidden", !cardMatches(card, filters));
     }
-    console.log(matches);
+
+    let cardsArray = Array.from(cards);
+    const sorted = sortCards(cardsArray, filters.sortBy);
+
+    console.log(sorted);
+
 }
 
 function clearFilters() {
