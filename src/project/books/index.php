@@ -31,14 +31,24 @@ catch (PDOException $e) {
         <?php require 'php/inc/flash_message.php'; ?>
     </div>
 
-    <div class="width-12 cards">
+    <div class="width-12 cards" id="bookCards">
 
-        <?php foreach ($books as $book): ?>
-        <div class="card">
+        <?php 
+            foreach ($books as $book): 
+                $formats = Format::findByBook($book->id);
+                $formatIds = [];
+                foreach ($formats as $format) {
+                    $formatIds[] = h($format->id);
+                }
+        ?>
+        <div class="card" 
+            data-title="<?= h($book->title) ?>"
+            data-publisher="<?= h($book->publisher_id) ?>"
+            data-formats="<?= implode(', ', $formatIds) ?>"
+            data-year="<?= h($book->year) ?>">
             
             <div class="top-content">
                 <a href="book_view.php?id=<?= h($book->id) ?>"><img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" /></a>
-                
             </div>
 
             <div class="bottom-content">
@@ -47,7 +57,7 @@ catch (PDOException $e) {
                 <div class="actions">
                     <a href="book_view.php?id=<?= h($book->id) ?>">View</a>|
                     <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>| 
-                    <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a>
+                    <button onclick="openDelete(<?= h($book->id) ?>)">Delete</button>
                 </div>
             </div>
             
@@ -56,10 +66,20 @@ catch (PDOException $e) {
 
     </div>
 
-    <!-- <div class="width-12">
-        <a class="button" href="book_create.php">Create new</a>
-    </div> -->
 </div>
 
-</body>
+<div class="modal-overlay hidden" id="modal">
+    <div class="modal-box">
+        <h2 id="whatBook">default</h2>
+        <div>
+            <button onclick="cancelDelete()">Cancel</button>
+            <a id="confirm" href="book_delete.php?id=">Delete</a>
+        </div>
+    </div>
+<div>
+
+<script src="js/filters.js"></script>
+<script src="js/delete_confirm.js"></script>
+
+</body>    
 </html>
